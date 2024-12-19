@@ -12,7 +12,7 @@ Node* CreateNewNode(int newData);
 void DeallocateNode(Node* &node);
 void PushFront(int newData, Node* &head);
 int TopFront(Node* head);
-//void PushBack(int newData);
+void PushBack(int newData, Node* head);
 //int TopBack(Node* head);
 //void PopBack(Node* &head);
 //bool Find(int findVal, Node* head);
@@ -27,8 +27,13 @@ void DeallocateList(Node* &head);
 int main() {
 	
 	Node* headPtr = nullptr;
+
 	for (int i = 1; i <= 5; i++) {
 		PushFront(i, headPtr);
+	}
+
+	for (int i = 6; i <= 10; i++) {
+		PushBack(i, headPtr);
 	}
 
 	printLeftToRight(headPtr);
@@ -95,4 +100,17 @@ void DeallocateList(Node* &head) {
 
 int TopFront(Node* head) {
 	return head->data;
+}
+
+
+
+void PushBack(int newData, Node* head) {
+
+	Node* newNode = CreateNewNode(newData);
+
+	while (head->next != nullptr) {
+		head = head->next;
+	}
+
+	head->next = newNode;
 }
