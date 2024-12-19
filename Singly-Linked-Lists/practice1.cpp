@@ -14,8 +14,8 @@ void PushFront(int newData, Node* &head);
 int TopFront(Node* head);
 void PushBack(int newData, Node* head);
 int TopBack(Node* head);
-void PopBack(Node* &head);
-//bool Find(int findVal, Node* head);
+int PopBack(Node* &head);
+bool Find(int findVal, Node* head);
 //void Erase(int deleteVal, Node* &head);
 //bool isEmpty(Node* head);
 //void AddBefore(Node* node, int val);
@@ -38,13 +38,21 @@ int main() {
 
 	printLeftToRight(headPtr);
 
-	PopBack(headPtr);
+	cout << "Pop Back: " << PopBack(headPtr) << endl;
 
 	printRightToLeft(headPtr);
 	cout << endl;
 
 	cout << "Top Front Value: " << TopFront(headPtr) << endl;
 	cout << "Top Back Value: " << TopBack(headPtr) << endl;
+
+	bool found_5 = Find(5, headPtr);
+	bool found_11 = Find(11, headPtr);
+	if (found_5) cout << "Found 5!" << endl;
+	else cout << "5 NOT Found!" << endl;
+	if (found_11) cout << "Found 11!" << endl;
+	else cout << "11 NOT Found!" << endl;
+
 	// Deallocate	
 	DeallocateList(headPtr);
 
@@ -132,12 +140,15 @@ int TopBack(Node* head) {
 
 
 
-void PopBack(Node* &head) {
+int PopBack(Node* &head) {
+	int ret_val = -1;
+
 	if (head == nullptr)
-		return;
+		return ret_val;
 	else if (head->next == nullptr) {
+		ret_val = head->data;
 		DeallocateNode(head);
-		return;
+		return ret_val;
 	}
 	else {
 		Node* follow = head;
@@ -148,9 +159,26 @@ void PopBack(Node* &head) {
 			follow = lead;
 			lead = lead->next;
 		}
-
+		ret_val = lead->data;
 		DeallocateNode(lead);
 		follow->next = lead;
 	}
 
+	return ret_val;
+
+}
+
+
+
+bool Find(int findVal, Node* head)
+{
+	bool found = false;
+
+	while (head != nullptr && found == false) {
+		if (head->data == findVal)
+			found = true;
+		head = head->next;
+	}
+
+	return found;
 }
