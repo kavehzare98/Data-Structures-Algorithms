@@ -14,7 +14,7 @@ void PushFront(int newData, Node* &head);
 int TopFront(Node* head);
 void PushBack(int newData, Node* head);
 int TopBack(Node* head);
-//void PopBack(Node* &head);
+void PopBack(Node* &head);
 //bool Find(int findVal, Node* head);
 //void Erase(int deleteVal, Node* &head);
 //bool isEmpty(Node* head);
@@ -37,6 +37,9 @@ int main() {
 	}
 
 	printLeftToRight(headPtr);
+
+	PopBack(headPtr);
+
 	printRightToLeft(headPtr);
 	cout << endl;
 
@@ -125,4 +128,29 @@ int TopBack(Node* head) {
 
 	int top_back = head->data;
 	return top_back;
+}
+
+
+
+void PopBack(Node* &head) {
+	if (head == nullptr)
+		return;
+	else if (head->next == nullptr) {
+		DeallocateNode(head);
+		return;
+	}
+	else {
+		Node* follow = head;
+		Node* lead = head;
+		lead = lead->next;
+
+		while(lead->next != nullptr) {
+			follow = lead;
+			lead = lead->next;
+		}
+
+		DeallocateNode(lead);
+		follow->next = lead;
+	}
+
 }
