@@ -11,7 +11,7 @@ struct Node {
 Node* CreateNewNode(int newData);
 void DeallocateNode(Node* &node);
 void PushFront(int newData, Node* &head);
-//int TopFront(Node* head);
+int TopFront(Node* head);
 //void PushBack(int newData);
 //int TopBack(Node* head);
 //void PopBack(Node* &head);
@@ -34,9 +34,9 @@ int main() {
 	printLeftToRight(headPtr);
 	printRightToLeft(headPtr);
 	cout << endl;
-	// Deallocate
-	Node* temp = nullptr;
 
+	cout << "Top Front Value: " << TopFront(headPtr) << endl;
+	// Deallocate	
 	DeallocateList(headPtr);
 
 	return 0;
@@ -93,4 +93,6 @@ void DeallocateList(Node* &head) {
 	}
 }
 
-
+int TopFront(Node* head) {
+	return head->data;
+}
