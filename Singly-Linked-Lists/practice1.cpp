@@ -9,7 +9,7 @@ struct Node {
 };
 
 Node* CreateNewNode(int newData);
-void DeallocateNode(Node* node);
+void DeallocateNode(Node* &node);
 void PushFront(int newData, Node* &head);
 //int TopFront(Node* head);
 //void PushBack(int newData);
@@ -20,27 +20,25 @@ void PushFront(int newData, Node* &head);
 //bool isEmpty(Node* head);
 //void AddBefore(Node* node, int val);
 //void AddAfter(Node* node, int val);
-//void printLeftToRight(Node* head);
-//void printRightToLeft(Node* head);
-//void DeallocateList(Node* &head);
+void printLeftToRight(Node* head);
+void printRightToLeft(Node* head);
+void DeallocateList(Node* &head);
 
 int main() {
 	
 	Node* headPtr = nullptr;
-	headPtr = CreateNewNode(1);
-	PushFront(2, headPtr);
+	for (int i = 1; i <= 5; i++) {
+		PushFront(i, headPtr);
+	}
 
-	Node* temp = headPtr;
-	
-	cout << temp->data << " -> ";
-	temp = temp->next;
-	cout << temp->data << endl;
+	printLeftToRight(headPtr);
+	printRightToLeft(headPtr);
+	cout << endl;
+	// Deallocate
+	Node* temp = nullptr;
 
-	DeallocateNode(headPtr->next);
-	DeallocateNode(headPtr);
+	DeallocateList(headPtr);
 
-	temp = nullptr;
-	
 	return 0;
 }
 
@@ -52,7 +50,7 @@ Node* CreateNewNode(int newData) {
 	return newNode;
 }
 
-void DeallocateNode(Node* node) {
+void DeallocateNode(Node* &node) {
 	delete node;
 	node = nullptr;
 }
@@ -62,3 +60,37 @@ void PushFront(int newVal, Node* &head) {
 	newNode->next = head;
 	head = newNode;
 }
+
+void printLeftToRight(Node* head) {
+	while (head->next != nullptr) {
+		cout << head->data << " -> ";
+		head = head->next;
+	}
+	cout << head->data << endl;
+}
+
+
+void printRightToLeft(Node* head) {
+	
+	if (head == nullptr) {
+		return;
+	}
+
+	printRightToLeft(head->next);
+
+	cout << head->data << " -> ";
+
+}
+
+
+
+void DeallocateList(Node* &head) {
+	Node* temp;
+	while(head != nullptr) {
+		temp = head;
+		head = head->next;
+		DeallocateNode(temp);
+	}
+}
+
+
