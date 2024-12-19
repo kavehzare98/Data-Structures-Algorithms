@@ -13,7 +13,7 @@ void DeallocateNode(Node* &node);
 void PushFront(int newData, Node* &head);
 int TopFront(Node* head);
 void PushBack(int newData, Node* head);
-//int TopBack(Node* head);
+int TopBack(Node* head);
 //void PopBack(Node* &head);
 //bool Find(int findVal, Node* head);
 //void Erase(int deleteVal, Node* &head);
@@ -41,6 +41,7 @@ int main() {
 	cout << endl;
 
 	cout << "Top Front Value: " << TopFront(headPtr) << endl;
+	cout << "Top Back Value: " << TopBack(headPtr) << endl;
 	// Deallocate	
 	DeallocateList(headPtr);
 
@@ -113,4 +114,15 @@ void PushBack(int newData, Node* head) {
 	}
 
 	head->next = newNode;
+}
+
+
+
+int TopBack(Node* head) {
+	while(head->next != nullptr) {
+		head = head->next;
+	}
+
+	int top_back = head->data;
+	return top_back;
 }
