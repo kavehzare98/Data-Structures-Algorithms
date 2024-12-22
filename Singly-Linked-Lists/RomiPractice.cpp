@@ -9,6 +9,7 @@ struct Node {
 Node* createNewNode(int val);
 bool Find(int data, Node* head);
 void Erase(int delVal, Node* &head);
+void pushBack(int addVal, Node* &head);
 
 
 int main() {
@@ -137,4 +138,27 @@ void Erase(int delVal, Node* &head) {
 		}
 	}
 }
+
+
+
+void pushBack(int addVal, Node* &head) {
+	if (head == nullptr)
+	{
+		Node * newNode = createNewNode(addVal);
+		head = newNode;
+	}
+	else {
+		Node * temp = head;
+
+		while(temp->next != nullptr){
+			temp = temp->next;
+		}
+		Node * newNode = createNewNode(addVal);
+		temp->next = newNode;
+	}
+
+}
+
+
+
 
