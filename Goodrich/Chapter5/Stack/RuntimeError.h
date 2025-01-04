@@ -1,11 +1,14 @@
 #ifndef RUNTIME_H
 #define RUNTIME_H
+#include <string>
+
+using std::string;
 
 class RuntimeError {
 private:
 	string errorMsg;
 public:
-	RuntimeException(const string& err) {
+	RuntimeError(const string& err) {
 		errorMsg = err;
 	}
 
@@ -15,15 +18,15 @@ public:
 
 };
 
-class StackFull : protected RuntimeError {
+class StackFull : public RuntimeError {
 public:
-	StackFull(const string &err) : RuntimeException(err) {}
+	StackFull(const string &err) : RuntimeError(err) {}
 };
 
 
-class StackEmpty : protected RuntimeError {
+class StackEmpty : public RuntimeError {
 public:
-	StackEmpty(const string &err) : RuntimeException(err) {}
+	StackEmpty(const string &err) : RuntimeError(err) {}
 };
 
 #endif
