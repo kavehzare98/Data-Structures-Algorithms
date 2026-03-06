@@ -4,6 +4,7 @@
 
 void processSensorData() {
   double data_point_1 = 10.5 * 1.12;
+  double data_point_2 = 10.5 * 1.12;
   double data_point_3 = 10.5 * 1.12;
   double data_point_4 = 10.5 * 1.12;
   double data_point_5 = 10.5 * 1.12;
