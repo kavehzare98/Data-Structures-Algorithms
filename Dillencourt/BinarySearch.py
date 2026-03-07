@@ -9,6 +9,7 @@ def binary_search(arr, x, first, last):
 	else:
 		return binary_search(arr, x, mid+1, last)
 
+# function main
 def main():
 	test = [1, 2, 3, 4, 5, 6, 7, 18, 20, 25, 33, 45, 99, 100]
 
