@@ -1,7 +1,10 @@
 def binary_search(arr, x, first, last):
 	if first > last:
 		return None
+<<<<<<< HEAD
 	mid = (first + last) // 2 # comment
+=======
+>>>>>>> e179b38abb09785c5d7eaa52680735cb34f5530d
 	if x == arr[mid]:
 		return mid
 	elif x < arr[mid]:
